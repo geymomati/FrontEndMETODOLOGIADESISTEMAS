@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18.20.8"
+
+[env]
+  VITE_API_URL = "https://my-api-spring-azure-c2gzdydbbah9gzeh.brazilsouth-01.azurewebsites.net/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "vite"
+  targetPort = 5173
+  port = 8888
+  framework = "vite"
