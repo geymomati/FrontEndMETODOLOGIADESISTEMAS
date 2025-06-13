@@ -1,6 +1,8 @@
 import { HttpClient } from '@/shared/types/httpClient';
 import {
   Available,
+  MethodPaymentData,
+  ProfessionalData,
   Reserve,
   ReserveStatus,
   SpaInfoData,
@@ -13,6 +15,12 @@ export class ServiceSpaService {
   listSpa() {
     return this.http.get<ApiDataResponse<SpaInfoData[]>>(
       `/api/service-spa/list`
+    );
+  }
+
+  listProfessional() {
+    return this.http.get<ApiDataResponse<ProfessionalData[]>>(
+      `/api/professional/list`
     );
   }
 
@@ -33,5 +41,15 @@ export class ServiceSpaService {
       `/api/reserve/new`,
       dataSend
     );
+  }
+
+  methodPayment(dataSend: MethodPaymentData) {
+    return this.http.get<ApiDataResponse<string>>(
+      `/api/invoice?reserveId=${dataSend.reserveId}&method=${dataSend.method}`
+    );
+  }
+
+  sendInvoice(id: number) {
+    return this.http.get<ApiDataResponse<string>>(`/api/invoice/${id}`);
   }
 }
